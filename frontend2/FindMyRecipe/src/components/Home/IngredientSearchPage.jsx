@@ -15,7 +15,7 @@ const IngredientSearchPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://accmovies.pythonanywhere.com/recipes/ingredients')
+    axios.get('https://accmovies.pythonanywhere.com/recipes/ingredients')
       .then(res => setSuggestions(res.data.ingredients || []))
       .catch(err => console.error('Failed to fetch suggestions:', err));
   }, []);
@@ -48,7 +48,7 @@ const IngredientSearchPage = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `http://accmovies.pythonanywhere.com/recipes/search-by-ingredients?limit=20&page=${reset ? 1 : page}`,
+        `https://accmovies.pythonanywhere.com/recipes/search-by-ingredients?limit=20&page=${reset ? 1 : page}`,
         { ingredients }
       );
       const fetched = res.data.recipes || [];

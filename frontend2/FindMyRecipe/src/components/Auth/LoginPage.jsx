@@ -17,7 +17,7 @@ const LoginPage = () => {
     }
 
     try {
-      const res = await axios.post('http://accmovies.pythonanywhere.com/auth/login', {
+      const res = await axios.post('https://accmovies.pythonanywhere.com/auth/login', {
         email,
         password,
       });
@@ -41,13 +41,13 @@ const LoginPage = () => {
 
   const handleGoogleLogin = () => {
     const popup = window.open(
-      'http://accmovies.pythonanywhere.com/auth/google-login',
+      'https://accmovies.pythonanywhere.com/auth/google-login',
       'googleLogin',
       'width=500,height=600'
     );
 
     const listener = (event) => {
-      if (event.origin !== 'http://accmovies.pythonanywhere.com') return;
+      if (event.origin !== 'https://accmovies.pythonanywhere.com') return;
 
       const { token, message } = event.data;
       if (token) {

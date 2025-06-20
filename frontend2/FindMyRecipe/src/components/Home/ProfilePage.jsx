@@ -15,7 +15,7 @@ const ProfilePage = () => {
   const [message, setMessage] = useState('');
 
   const axiosAuth = axios.create({
-    baseURL: 'http://accmovies.pythonanywhere.com',
+    baseURL: 'https://accmovies.pythonanywhere.com',
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -70,7 +70,7 @@ const ProfilePage = () => {
         formData.append('image', selectedImageFile);
       }
 
-      const res = await axios.put('http://accmovies.pythonanywhere.com/auth/update-profile', formData, {
+      const res = await axios.put('https://accmovies.pythonanywhere.com/auth/update-profile', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',

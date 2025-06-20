@@ -34,7 +34,7 @@ const RegisterPage = () => {
 
     setIsLoading(true);
     try {
-      const res = await axios.post('http://accmovies.pythonanywhere.com/auth/send-email-otp-register', { email });
+      const res = await axios.post('https://accmovies.pythonanywhere.com/auth/send-email-otp-register', { email });
       if (res.data.success) {
         setOtpSent(true);
         setMessage('✅ OTP sent to your email.');
@@ -55,7 +55,7 @@ const RegisterPage = () => {
 
     setIsLoading(true);
     try {
-      const res = await axios.post('http://accmovies.pythonanywhere.com/auth/register', {
+      const res = await axios.post('https://accmovies.pythonanywhere.com/auth/register', {
         name,
         email,
         password,

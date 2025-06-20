@@ -37,7 +37,7 @@ const RecipeFind = () => {
   useEffect(() => {
     Object.entries(FILTER_CATEGORIES).forEach(async ([key, endpoint]) => {
       try {
-        const res = await axios.get(`http://accmovies.pythonanywhere.com${endpoint}`);
+        const res = await axios.get(`https://accmovies.pythonanywhere.com${endpoint}`);
         const dataKey = Object.keys(res.data)[0];
         setOptions(prev => ({ ...prev, [key]: res.data[dataKey] }));
       } catch (err) {
@@ -76,7 +76,7 @@ const RecipeFind = () => {
       });
   
       const res = await axios.get(
-        `http://accmovies.pythonanywhere.com/recipes/search?query=${encodeURIComponent(query)}&${params.toString()}`
+        `https://accmovies.pythonanywhere.com/recipes/search?query=${encodeURIComponent(query)}&${params.toString()}`
       );
   
       const results = res.data.results || [];
@@ -117,7 +117,7 @@ const RecipeFind = () => {
         values.forEach(val => params.append(key, val));
       });
   
-      const res = await axios.get(`http://accmovies.pythonanywhere.com/recipes/recipes?${params.toString()}`);
+      const res = await axios.get(`https://accmovies.pythonanywhere.com/recipes/recipes?${params.toString()}`);
       const fetched = res.data.recipes || [];
   
       if (reset) {

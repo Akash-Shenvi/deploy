@@ -21,7 +21,7 @@ const Navbar = () => {
   const fetchUserInfo = async () => {
     try {
       const token = localStorage.getItem('token'); // or however you're storing it
-      const res = await axios.get('http://accmovies.pythonanywhere.com/auth/whoami', {
+      const res = await axios.get('https://accmovies.pythonanywhere.com/auth/whoami', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -34,7 +34,7 @@ const Navbar = () => {
         if (image?.startsWith('data:image')) {
           setProfileImg(image);
         } else if (image) {
-          setProfileImg(`http://accmovies.pythonanywhere.com/${image}`);
+          setProfileImg(`https://accmovies.pythonanywhere.com/${image}`);
         } else {
           setProfileImg(defaultProfileImage);
         }
