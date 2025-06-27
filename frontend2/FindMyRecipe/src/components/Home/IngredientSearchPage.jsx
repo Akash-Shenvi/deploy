@@ -20,7 +20,6 @@ const IngredientSearchPage = () => {
       .catch(err => console.error('Failed to fetch suggestions:', err));
   }, []);
 
-  // 🔍 Handle ingredient input filtering
   useEffect(() => {
     if (input.trim() === '') {
       setFilteredSuggestions([]);
@@ -34,7 +33,10 @@ const IngredientSearchPage = () => {
   }, [input, suggestions, ingredients]);
 
   const handleAddIngredient = (ing) => {
-    setIngredients([...ingredients, ing]);
+    const trimmedIng = ing.trim();
+    if (trimmedIng && !ingredients.includes(trimmedIng)) {
+      setIngredients([...ingredients, trimmedIng]);
+    }
     setInput('');
     setFilteredSuggestions([]);
   };
@@ -92,7 +94,7 @@ const IngredientSearchPage = () => {
       {/* Title */}
       <div className="text-center py-6 border-b w-full">
         <h2 className="text-3xl font-bold text-yellow-600">🧄 Search Recipes by Ingredients</h2>
-        <p className="text-lg text-gray-600 mt-2">Type ingredients and click to add. Search what you can cook!</p>
+        <p className="text-lg text-gray-600 mt-2">Type ingredients and click Enter to add. Search what you can cook!</p>
       </div>
 
       {/* Ingredient Tag Input */}
@@ -112,6 +114,12 @@ const IngredientSearchPage = () => {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && input.trim()) {
+              e.preventDefault();
+              handleAddIngredient(input.trim());
+            }
+          }}
           placeholder="Start typing ingredients..."
           className="w-full py-3 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-yellow-400"
         />
@@ -128,6 +136,17 @@ const IngredientSearchPage = () => {
             ))}
           </ul>
         )}
+        <div className="text-right mt-2">
+          {input.trim() && (
+            <button
+              type="button"
+              onClick={() => handleAddIngredient(input.trim())}
+              className="text-sm text-yellow-600 hover:underline"
+            >
+              ➕ Add "{input.trim()}" as ingredient
+            </button>
+          )}
+        </div>
         <div className="text-center mt-6">
           <button
             type="submit"
